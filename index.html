@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnovateTech Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --sky-blue: #4fc3f7;
+            --dark-blue: #1976d2;
+            --purple: #7b1fa2;
+            --red: #ff5252;
+            --orange: #ff9800;
+            --white: #ffffff;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--sky-blue), var(--purple));
+            color: #333;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            margin-right: 15px;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--dark-blue), var(--red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Navigation Styles */
+        nav {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-buttons {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-buttons li {
+            margin: 0 5px;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 12px 25px;
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 600;
+            border-radius: 8px;
+            background: linear-gradient(to bottom, var(--dark-blue), var(--purple));
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 
+                        inset 0 1px 1px rgba(255, 255, 255, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn:before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, rgba(255,255,255,0.8), rgba(255,255,255,0));
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+            z-index: 1;
+        }
+
+        .nav-btn:hover:before {
+            transform: translateX(100%);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 
+                        inset 0 1px 1px rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(to bottom, var(--red), var(--orange));
+        }
+
+        /* Page Content Styles */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(45deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, var(--sky-blue), var(--red), var(--orange));
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--dark-blue), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Slider Containers */
+        .slider-container {
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .horizontal-slider, .vertical-slider {
+            display: flex;
+        }
+
+        .horizontal-slider {
+            height: 200px;
+            animation: slideHorizontal 30s linear infinite;
+        }
+
+        .vertical-slider {
+            flex-direction: column;
+            height: 400px;
+            animation: slideVertical 25s linear infinite;
+        }
+
+        .slide {
+            flex: 0 0 auto;
+        }
+
+        .horizontal-slider .slide {
+            width: 300px;
+            height: 200px;
+        }
+
+        .vertical-slider .slide {
+            width: 100%;
+            height: 400px;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        @keyframes slideHorizontal {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes slideVertical {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-section h2 {
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+
+        .content-section p {
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            color: var(--white);
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            color: var(--white);
+            font-size: 24px;
+            margin: 0 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 20px;
+                justify-content: center;
+            }
+            
+            .nav-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-buttons li {
+                margin: 5px;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with Logo and Navigation -->
+        <header>
+            <div class="logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjNGZjM2Y3IiBkPSJNMjU2IDhDMTE5IDggOCAxMTkgOCAyNTZzMTExIDI0OCAyNDggMjQ4IDI0OC0xMTEgMjQ4LTI0OFMzOTMgOCAyNTYgOHptMCA0NDhjLTExMC41IDAtMjAwLTg5LjUtMjAwLTIwMFMxNDUuNSA1NiAyNTYgNTZzMjAwIDg5LjUgMjAwIDIwMC04OS41IDIwMC0yMDAgMjAweiIvPjxwYXRoIGZpbGw9IiMxOTc2ZDIiIGQ9Ik0zMDQgMjQwVjEzNmg2NHYxMDRoMTA0djY0SDM2OHYxMDRoLTY0VjMwNEgxOTJ2LTY0aDExMnoiLz48L3N2Zz4=" alt="InnovateTech Logo">
+                <div class="logo-text">InnovateTech</div>
+            </div>
+            
+            <nav>
+                <ul class="nav-buttons">
+                    <li><a href="#" class="nav-btn active" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-btn" data-page="research">R&D</a></li>
+                    <li><a href="#" class="nav-btn" data-page="services">Services</a></li>
+                    <li><a href="#" class="nav-btn" data-page="workshop">Workshop</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <div class="hero">
+                <h1>Innovating Tomorrow's Technology Today</h1>
+                <p>We are a cutting-edge technology company focused on developing innovative solutions for businesses and consumers worldwide. Our team of experts is dedicated to pushing the boundaries of what's possible.</p>
+            </div>
+
+            <div class="slider-container">
+                <div class="horizontal-slider">
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Tech Image 1"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1620674156044-52c3fe3e8fea?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Tech Image 2"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1621944190310-e3cca1564bd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Tech Image 3"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1603732551681-2e91159b9dc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Tech Image 4"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1621607512022-7fd0badd13ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Tech Image 5"></div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Tech Image 1"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1620674156044-52c3fe3e8fea?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Tech Image 2"></div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Welcome to InnovateTech</h2>
+                <p>At InnovateTech, we believe in the power of technology to transform businesses and improve lives. Our mission is to develop innovative solutions that address real-world challenges and create value for our clients.</p>
+                <p>With expertise in artificial intelligence, cloud computing, IoT, and blockchain, we're at the forefront of technological innovation. Our team of engineers, designers, and strategists work together to create products that are not only functional but also intuitive and beautiful.</p>
+            </div>
+
+            <div class="slider-container">
+                <div class="vertical-slider">
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1621607512022-7fd0badd13ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Vertical Image 1"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1603732551681-2e91159b9dc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Vertical Image 2"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1621944190310-e3cca1564bd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Vertical Image 3"></div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1621607512022-7fd0badd13ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Vertical Image 1"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1603732551681-2e91159b9dc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Vertical Image 2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Research and Development Page -->
+        <div id="research" class="page">
+            <div class="hero">
+                <h1>Research & Development</h1>
+                <p>Our R&D department is the engine of innovation at InnovateTech. We invest heavily in exploring emerging technologies and developing cutting-edge solutions.</p>
+            </div>
+
+            <div class="slider-container">
+                <div class="horizontal-slider">
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="R&D Image 1"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="R&D Image 2"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1563207153-f403bf289096?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="R&D Image 3"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1563014959-7aaa83350992?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="R&D Image 4"></div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="R&D Image 1"></div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Our Research Focus</h2>
+                <p>We're currently focusing on several key areas of technological innovation, including quantum computing, neural networks, biotechnology interfaces, and sustainable energy solutions.</p>
+                <p>Our team of researchers includes experts from various fields, working together to push the boundaries of what's possible with technology. We collaborate with leading universities and research institutions worldwide.</p>
+            </div>
+
+            <div class="slider-container">
+                <div class="vertical-slider">
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="R&D Vertical 1"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="R&D Vertical 2"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1563207153-f403bf289096?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="R&D Vertical 3"></div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="R&D Vertical 1"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Page -->
+        <div id="services" class="page">
+            <div class="hero">
+                <h1>Our Services</h1>
+                <p>We offer a wide range of technology services designed to help businesses transform and thrive in the digital age.</p>
+            </div>
+
+            <div class="slider-container">
+                <div class="horizontal-slider">
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1563014959-7aaa83350992?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Service Image 1"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Service Image 2"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Service Image 3"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Service Image 4"></div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1563014959-7aaa83350992?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Service Image 1"></div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Comprehensive Technology Solutions</h2>
+                <p>Our services include custom software development, cloud migration, data analytics, AI implementation, cybersecurity solutions, and technology consulting.</p>
+                <p>We work closely with our clients to understand their unique challenges and develop tailored solutions that drive growth and efficiency. Our approach combines technical expertise with business acumen to deliver measurable results.</p>
+            </div>
+
+            <div class="slider-container">
+                <div class="vertical-slider">
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Service Vertical 1"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Service Vertical 2"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Service Vertical 3"></div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Service Vertical 1"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Workshop Page -->
+        <div id="workshop" class="page">
+            <div class="hero">
+                <h1>Innovation Workshop</h1>
+                <p>Our workshop spaces are designed to foster creativity and collaboration. We host regular events, hackathons, and training sessions.</p>
+            </div>
+
+            <div class="slider-container">
+                <div class="horizontal-slider">
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Workshop Image 1"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Workshop Image 2"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Workshop Image 3"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Workshop Image 4"></div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Workshop Image 1"></div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Collaborate and Create</h2>
+                <p>Our innovation workshops provide space for teams to collaborate, brainstorm, and develop new ideas. We offer state-of-the-art facilities equipped with the latest technology.</p>
+                <p>Whether you're looking to host a team offsite, develop a new product concept, or learn new skills, our workshops provide the perfect environment for innovation and growth.</p>
+            </div>
+
+            <div class="slider-container">
+                <div class="vertical-slider">
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Workshop Vertical 1"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Workshop Vertical 2"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Workshop Vertical 3"></div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Workshop Vertical 1"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2023 InnovateTech Solutions. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Page Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const pages = document.querySelectorAll('.page');
+            
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetPage = this.getAttribute('data-page');
+                    
+                    // Update active button
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show target page
+                    pages.forEach(page => {
+                        page.classList.remove('active');
+                        if (page.id === targetPage) {
+                            page.classList.add('active');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
