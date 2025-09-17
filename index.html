@@ -6,741 +6,747 @@
     <title>MM Times - Meenakshi Mukundha Times</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Global Styles */
+        :root {
+            --sky-blue: #4fc3f7;
+            --dark-blue: #01579b;
+            --red: #ff5252;
+            --orange: #ff9800;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, var(--sky-blue), var(--red), var(--orange));
+            --light-bg: #f8f9fa;
+            --dark-text: #333333;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        :root {
-            --sky-blue: #4fc3f7;
-            --dark-blue: #1976d2;
-            --purple: #7b1fa2;
-            --red: #ff5252;
-            --orange: #ff9800;
-            --white: #ffffff;
-            --light-bg: #f8f9fa;
-        }
-
+        
         body {
-            background: linear-gradient(135deg, var(--sky-blue), var(--purple));
-            color: #333;
-            min-height: 100vh;
-            background-attachment: fixed;
+            color: var(--dark-text);
+            background-color: var(--white);
+            overflow-x: hidden;
         }
-
+        
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
-
+        
         /* Header Styles */
         header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
-            margin-bottom: 30px;
+            padding: 15px 0;
         }
-
+        
         .logo {
             display: flex;
             align-items: center;
         }
-
+        
         .logo img {
-            height: 70px;
-            margin-right: 15px;
+            height: 60px;
+            margin-right: 10px;
         }
-
+        
         .logo-text {
-            font-size: 36px;
-            font-weight: 800;
-            background: linear-gradient(to right, var(--dark-blue), var(--red));
+            font-size: 28px;
+            font-weight: bold;
+            background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
-
-        /* Navigation Styles */
-        nav {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 5px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-        }
-
-        .nav-buttons {
+        
+        .nav-menu {
             display: flex;
             list-style: none;
         }
-
-        .nav-buttons li {
-            margin: 0 5px;
+        
+        .nav-menu li {
+            margin: 0 15px;
         }
-
-        .nav-btn {
-            display: block;
-            padding: 12px 25px;
+        
+        .nav-menu a {
             text-decoration: none;
-            color: var(--white);
+            color: var(--dark-blue);
             font-weight: 600;
-            border-radius: 8px;
-            background: linear-gradient(to bottom, var(--dark-blue), var(--purple));
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 
-                        inset 0 1px 1px rgba(255, 255, 255, 0.4);
+            font-size: 16px;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            padding: 8px 12px;
+            border-radius: 4px;
         }
-
-        .nav-btn:before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(45deg, rgba(255,255,255,0.8), rgba(255,255,255,0));
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-            z-index: 1;
+        
+        .nav-menu a:hover {
+            background: var(--gradient);
+            color: var(--white);
         }
-
-        .nav-btn:hover:before {
-            transform: translateX(100%);
-        }
-
-        .nav-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 
-                        inset 0 1px 1px rgba(255, 255, 255, 0.5);
-        }
-
-        .nav-btn.active {
-            background: linear-gradient(to bottom, var(--red), var(--orange));
-        }
-
-        /* Account Section */
-        .account-section {
+        
+        .auth-buttons {
             display: flex;
             align-items: center;
         }
-
-        .account-btn {
-            background: linear-gradient(to right, var(--orange), var(--red));
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            margin-left: 15px;
-            cursor: pointer;
+        
+        .auth-btn {
+            padding: 8px 20px;
+            margin-left: 10px;
+            border-radius: 4px;
             font-weight: 600;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
             transition: all 0.3s ease;
         }
-
-        .account-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        
+        .login-btn {
+            background: transparent;
+            border: 2px solid var(--dark-blue);
+            color: var(--dark-blue);
         }
-
-        /* Page Content Styles */
-        .page {
+        
+        .login-btn:hover {
+            background: var(--dark-blue);
+            color: var(--white);
+        }
+        
+        .signup-btn {
+            background: var(--gradient);
+            border: none;
+            color: var(--white);
+        }
+        
+        .hamburger {
             display: none;
-            animation: fadeIn 0.5s ease;
+            font-size: 24px;
+            cursor: pointer;
         }
-
-        .page.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
+        
         /* Hero Section */
         .hero {
-            background: linear-gradient(45deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            text-align: center;
+            height: 80vh;
+            background: url('https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
             position: relative;
-            overflow: hidden;
         }
-
-        .hero:before {
+        
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(to right, var(--sky-blue), var(--red), var(--orange));
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
         }
-
-        .hero h1 {
-            font-size: 42px;
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: var(--white);
+            max-width: 600px;
+            padding: 0 20px;
+        }
+        
+        .hero-content h1 {
+            font-size: 48px;
             margin-bottom: 20px;
-            background: linear-gradient(to right, var(--dark-blue), var(--purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
-
-        .hero p {
+        
+        .hero-content p {
             font-size: 18px;
-            line-height: 1.6;
-            color: #555;
-            max-width: 800px;
+            margin-bottom: 30px;
+        }
+        
+        .hero-btn {
+            padding: 12px 30px;
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: var(--light-bg);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
             margin: 0 auto;
         }
-
-        /* Slider Containers */
-        .slider-container {
-            margin: 30px 0;
-            position: relative;
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: var(--white);
+            border-radius: 8px;
             overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
-
-        .horizontal-slider, .vertical-slider {
-            display: flex;
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
-
-        .horizontal-slider {
+        
+        .service-img {
             height: 200px;
-            animation: slideHorizontal 30s linear infinite;
+            overflow: hidden;
         }
-
-        .vertical-slider {
-            flex-direction: column;
-            height: 400px;
-            animation: slideVertical 25s linear infinite;
-        }
-
-        .slide {
-            flex: 0 0 auto;
-        }
-
-        .horizontal-slider .slide {
-            width: 300px;
-            height: 200px;
-        }
-
-        .vertical-slider .slide {
-            width: 100%;
-            height: 400px;
-        }
-
-        .slide img {
+        
+        .service-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
+            transition: all 0.5s ease;
         }
-
-        @keyframes slideHorizontal {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
         }
-
-        @keyframes slideVertical {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-50%); }
+        
+        .service-content {
+            padding: 20px;
         }
-
-        /* Content Sections */
-        .content-section {
-            background: rgba(255, 255, 255, 0.85);
-            border-radius: 15px;
-            padding: 25px;
-            margin: 25px 0;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .content-section h2 {
+        
+        .service-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
             color: var(--dark-blue);
-            margin-bottom: 15px;
-            font-size: 28px;
         }
-
-        .content-section p {
-            line-height: 1.6;
-            color: #444;
+        
+        .service-content p {
+            color: #666;
             margin-bottom: 15px;
         }
-
-        /* Subscribe Section */
-        .subscribe-section {
-            background: linear-gradient(45deg, var(--dark-blue), var(--purple));
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px 0;
-            text-align: center;
-            color: white;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        
+        .service-link {
+            color: var(--sky-blue);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
         }
-
-        .subscribe-section h2 {
-            margin-bottom: 20px;
-            font-size: 28px;
+        
+        .service-link i {
+            margin-left: 5px;
+            transition: all 0.3s ease;
         }
-
-        .subscribe-form {
+        
+        .service-link:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* Image Slider */
+        .image-slider {
+            padding: 80px 0;
+            background: var(--white);
+        }
+        
+        .slider-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .slider {
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            max-width: 600px;
-            margin: 0 auto;
+            transition: all 0.5s ease;
         }
-
-        .subscribe-form input {
-            flex: 1;
-            min-width: 250px;
-            padding: 12px 15px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
+        
+        .slide {
+            min-width: 100%;
+            position: relative;
         }
-
-        .subscribe-form button {
-            background: linear-gradient(to right, var(--orange), var(--red));
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .subscribe-form button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Contact Form */
-        .contact-form {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px 0;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .contact-form h2 {
-            text-align: center;
-            margin-bottom: 25px;
-            color: var(--dark-blue);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #444;
-        }
-
-        .form-group input,
-        .form-group textarea {
+        
+        .slide img {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .form-submit {
-            background: linear-gradient(to right, var(--dark-blue), var(--purple));
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
             display: block;
-            margin: 0 auto;
+        }
+        
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--white);
+        }
+        
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+        }
+        
+        .slider-btn {
+            background: rgba(255, 255, 255, 0.3);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
-
-        .form-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        
+        .slider-btn:hover {
+            background: rgba(255, 255, 255, 0.5);
         }
-
+        
         /* Footer */
         footer {
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 50px;
+            background: var(--dark-blue);
             color: var(--white);
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
+            padding: 60px 0 20px;
         }
-
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient);
+        }
+        
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+        
         .social-icons {
             display: flex;
-            justify-content: center;
-            margin-top: 15px;
+            gap: 15px;
+            margin-top: 20px;
         }
-
+        
         .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
             color: var(--white);
-            font-size: 24px;
-            margin: 0 15px;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
         }
-
+        
         .social-icons a:hover {
-            transform: translateY(-5px);
+            background: var(--gradient);
+            transform: translateY(-3px);
         }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header {
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                background: var(--white);
+                width: 80%;
+                height: calc(100vh - 80px);
                 flex-direction: column;
-                text-align: center;
+                padding: 40px 20px;
+                box-shadow: 5px 0 10px rgba(0, 0, 0, 0.1);
+                transition: all 0.5s ease;
             }
             
-            .logo {
-                margin-bottom: 20px;
-                justify-content: center;
+            .nav-menu.active {
+                left: 0;
             }
             
-            .nav-buttons {
-                flex-wrap: wrap;
-                justify-content: center;
+            .nav-menu li {
+                margin: 15px 0;
             }
             
-            .nav-buttons li {
-                margin: 5px;
+            .hamburger {
+                display: block;
             }
             
-            .hero h1 {
-                font-size: 32px;
+            .hero-content h1 {
+                font-size: 36px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 20px;
             }
             
-            .hero p {
+            .logo img {
+                height: 40px;
+            }
+            
+            .hero {
+                height: 60vh;
+            }
+            
+            .hero-content h1 {
+                font-size: 28px;
+            }
+            
+            .hero-content p {
                 font-size: 16px;
             }
             
-            .account-section {
-                margin-top: 20px;
-                justify-content: center;
+            .section-title h2 {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .auth-buttons {
+                display: none;
+            }
+            
+            .hero-content {
+                text-align: center;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header with Logo and Navigation -->
-        <header>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
             <div class="logo">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjNGZjM2Y3IiBkPSJNMjU2IDhDMTE5IDggOCAxMTkgOCAyNTZzMTExIDI0OCAyNDggMjQ4IDI0OC0xMTEgMjQ4LTI0OFMzOTMgOCAyNTYgOHptMCA0NDhjLTExMC41IDAtMjAwLTg5LjUtMjAwLTIwMFMxNDUuNSA1NiAyNTYgNTZzMjAwIDg5LjUgMjAwIDIwMC04OS41IDIwMC0yMDAgMjAweiIvPjxwYXRoIGZpbGw9IiMxOTc2ZDIiIGQ9Ik0zMDQgMjQwVjEzNmg2NHYxMDRoMTA0djY0SDM2OHYxMDRoLTY0VjMwNEgxOTJ2LTY0aDExMnoiLz48L3N2Zz4=" alt="MM Times Logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9IiMwMTU3OWIiIHJ4PSIxMCIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjQwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TU08L3RleHQ+PC9zdmc+" alt="MM Times Logo">
                 <div class="logo-text">MM Times</div>
             </div>
             
-            <nav>
-                <ul class="nav-buttons">
-                    <li><a href="#" class="nav-btn active" data-page="home">Home</a></li>
-                    <li><a href="#" class="nav-btn" data-page="research">R&D</a></li>
-                    <li><a href="#" class="nav-btn" data-page="services">Services</a></li>
-                    <li><a href="#" class="nav-btn" data-page="workshop">Workshop</a></li>
-                </ul>
-            </nav>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#ecommerce">E-Commerce</a></li>
+                <li><a href="#procurement">Procurement</a></li>
+                <li><a href="#special-services">Special Services</a></li>
+                <li><a href="#workshops">Workshops</a></li>
+                <li><a href="#innovation">Innovation</a></li>
+                <li><a href="#custom-solutions">Custom Solutions</a></li>
+                <li><a href="#careers">Careers</a></li>
+                <li><a href="#web-solutions">Web Solutions</a></li>
+                <li><a href="#blogs">Blogs</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
             
-            <div class="account-section">
-                <button class="account-btn">Subscribe</button>
-                <button class="account-btn">Account</button>
+            <div class="auth-buttons">
+                <button class="auth-btn login-btn">Login</button>
+                <button class="auth-btn signup-btn">Sign Up</button>
             </div>
-        </header>
-
-        <!-- Home Page -->
-        <div id="home" class="page active">
-            <div class="hero">
-                <h1>Welcome to MM Times</h1>
-                <p>Meenakshi Mukundha Times - Your trusted source for news, insights, and innovation. We bring you the latest developments from around the world with a focus on technology, research, and global affairs.</p>
-            </div>
-
-            <div class="slider-container">
-                <div class="horizontal-slider">
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="News Image 1"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="News Image 2"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1566378246598-5b11a0d486cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="News Image 3"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Tech Image 4"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Tech Image 5"></div>
-                    <!-- Duplicate for seamless loop -->
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="News Image 1"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="News Image 2"></div>
-                </div>
-            </div>
-
-            <div class="content-section">
-                <h2>Latest Headlines</h2>
-                <p>Stay updated with the most recent developments in technology, politics, business, and culture from around the globe. Our team of dedicated journalists works around the clock to bring you accurate and timely news.</p>
-                <p>At MM Times, we believe in the power of information to transform societies and empower individuals. Our commitment is to deliver news that matters, with integrity and perspective.</p>
-            </div>
-
-            <div class="slider-container">
-                <div class="vertical-slider">
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1566378246598-5b11a0d486cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Vertical Image 1"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Vertical Image 2"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Vertical Image 3"></div>
-                    <!-- Duplicate for seamless loop -->
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1566378246598-5b11a0d486cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Vertical Image 1"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Vertical Image 2"></div>
-                </div>
-            </div>
-
-            <div class="subscribe-section">
-                <h2>Stay Updated with MM Times</h2>
-                <p>Subscribe to our newsletter for daily updates and exclusive content</p>
-                <form class="subscribe-form">
-                    <input type="email" placeholder="Enter your email address" required>
-                    <button type="submit">Subscribe Now</button>
-                </form>
+            
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
             </div>
         </div>
+    </header>
 
-        <!-- Research and Development Page -->
-        <div id="research" class="page">
-            <div class="hero">
-                <h1>Research & Development</h1>
-                <p>Exploring the frontiers of knowledge and innovation. Our R&D division focuses on cutting-edge technologies and methodologies that shape the future of media and information dissemination.</p>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Innovation, Technology & Business Solutions</h1>
+            <p>MM Times offers cutting-edge products, services, and solutions for businesses, startups, and students.</p>
+            <button class="hero-btn">Explore Our Services</button>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>Discover the wide range of services we offer to help businesses, startups, and students succeed</p>
             </div>
-
-            <div class="slider-container">
-                <div class="horizontal-slider">
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="R&D Image 1"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="R&D Image 2"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1563207153-f403bf289096?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="R&D Image 3"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1563014959-7aaa83350992?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="R&D Image 4"></div>
-                    <!-- Duplicate for seamless loop -->
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="R&D Image 1"></div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1468436139062-f60a71c5c892?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="E-Commerce">
+                    </div>
+                    <div class="service-content">
+                        <h3>E-Commerce</h3>
+                        <p>Explore our wide range of laptops, electronics, and other tech products at competitive prices.</p>
+                        <a href="#ecommerce" class="service-link">Explore More <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
-            </div>
-
-            <div class="content-section">
-                <h2>Innovation in Journalism</h2>
-                <p>Our research team is exploring new ways to deliver news more effectively, using data analytics, artificial intelligence, and immersive technologies. We're committed to enhancing how stories are told and consumed in the digital age.</p>
-                <p>Current projects include developing algorithms for more accurate news personalization, creating immersive VR news experiences, and studying the impact of social media on information dissemination.</p>
-            </div>
-
-            <div class="slider-container">
-                <div class="vertical-slider">
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="R&D Vertical 1"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="R&D Vertical 2"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1563207153-f403bf289096?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="R&D Vertical 3"></div>
-                    <!-- Duplicate for seamless loop -->
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="R&D Vertical 1"></div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Procurement">
+                    </div>
+                    <div class="service-content">
+                        <h3>Procurement Services</h3>
+                        <p>Get raw materials, clothing, electronics and other supplies for your business or startup.</p>
+                        <a href="#procurement" class="service-link">Explore More <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
-            </div>
-
-            <div class="contact-form">
-                <h2>Get in Touch with Our R&D Team</h2>
-                <form id="research-contact">
-                    <div class="form-group">
-                        <label for="research-name">Your Name</label>
-                        <input type="text" id="research-name" required>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Special Services">
                     </div>
-                    <div class="form-group">
-                        <label for="research-email">Email Address</label>
-                        <input type="email" id="research-email" required>
+                    <div class="service-content">
+                        <h3>Special Services</h3>
+                        <p>Tailored solutions for students and startups including procurement and web solutions at low cost.</p>
+                        <a href="#special-services" class="service-link">Explore More <i class="fas fa-arrow-right"></i></a>
                     </div>
-                    <div class="form-group">
-                        <label for="research-message">Your Message</label>
-                        <textarea id="research-message" required></textarea>
-                    </div>
-                    <button type="submit" class="form-submit">Send Message</button>
-                </form>
+                </div>
             </div>
         </div>
+    </section>
 
-        <!-- Services Page -->
-        <div id="services" class="page">
-            <div class="hero">
-                <h1>Our Services</h1>
-                <p>MM Times offers a comprehensive range of media and information services tailored to meet the needs of individuals, businesses, and organizations in the digital age.</p>
+    <!-- Image Slider -->
+    <section class="image-slider">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Products & Innovations</h2>
+                <p>Explore our latest offerings and innovative solutions</p>
             </div>
-
+            
             <div class="slider-container">
-                <div class="horizontal-slider">
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1563014959-7aaa83350992?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Service Image 1"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Service Image 2"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Service Image 3"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Service Image 4"></div>
-                    <!-- Duplicate for seamless loop -->
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1563014959-7aaa83350992?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Service Image 1"></div>
+                <div class="slider">
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Research and Development">
+                        <div class="slide-content">
+                            <h3>Research & Development</h3>
+                            <p>Cutting-edge research to drive innovation and business growth</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Electronics">
+                        <div class="slide-content">
+                            <h3>Latest Electronics</h3>
+                            <p>Discover the newest gadgets and electronics at competitive prices</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Workshops">
+                        <div class="slide-content">
+                            <h3>Skill Development Workshops</h3>
+                            <p>Enhance your skills with our specialized training programs</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="content-section">
-                <h2>Comprehensive Media Solutions</h2>
-                <p>We provide news syndication services, custom content creation, media training, digital marketing solutions, and data analytics services. Our team of experienced journalists and media professionals ensures the highest quality in all our offerings.</p>
-                <p>Whether you're an individual looking to stay informed or a business seeking to enhance your media presence, MM Times has the expertise and resources to meet your needs.</p>
-            </div>
-
-            <div class="slider-container">
-                <div class="vertical-slider">
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Service Vertical 1"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Service Vertical 2"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Service Vertical 3"></div>
-                    <!-- Duplicate for seamless loop -->
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Service Vertical 1"></div>
+                
+                <div class="slider-nav">
+                    <div class="slider-btn prev"><i class="fas fa-chevron-left"></i></div>
+                    <div class="slider-btn next"><i class="fas fa-chevron-right"></i></div>
                 </div>
-            </div>
-
-            <div class="contact-form">
-                <h2>Contact Our Services Team</h2>
-                <form id="services-contact">
-                    <div class="form-group">
-                        <label for="services-name">Your Name</label>
-                        <input type="text" id="services-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="services-email">Email Address</label>
-                        <input type="email" id="services-email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="services-message">Your Message</label>
-                        <textarea id="services-message" required></textarea>
-                    </div>
-                    <button type="submit" class="form-submit">Send Message</button>
-                </form>
             </div>
         </div>
+    </section>
 
-        <!-- Workshop Page -->
-        <div id="workshop" class="page">
-            <div class="hero">
-                <h1>MM Times Workshop</h1>
-                <p>Join our workshops to enhance your media literacy, journalism skills, and understanding of the digital information landscape. Our expert-led sessions are designed for professionals, students, and enthusiasts alike.</p>
-            </div>
-
-            <div class="slider-container">
-                <div class="horizontal-slider">
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Workshop Image 1"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Workshop Image 2"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Workshop Image 3"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Workshop Image 4"></div>
-                    <!-- Duplicate for seamless loop -->
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Workshop Image 1"></div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About MM Times</h3>
+                    <p>MM Times - Meenakshi Mukundha Times is a multi-service provider offering innovative solutions for businesses, startups, and students.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#ecommerce">E-Commerce</a></li>
+                        <li><a href="#procurement">Procurement Services</a></li>
+                        <li><a href="#special-services">Special Services</a></li>
+                        <li><a href="#web-solutions">Web Solutions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#research">Research & Development</a></li>
+                        <li><a href="#workshops">Workshops</a></li>
+                        <li><a href="#innovation">Projects & Innovation</a></li>
+                        <li><a href="#custom-solutions">Customized Solutions</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Innovation Road, Tech City</p>
+                    <p><i class="fas fa-phone"></i> +1 234 567 8900</p>
+                    <p><i class="fas fa-envelope"></i> info@mmtimes.com</p>
                 </div>
             </div>
-
-            <div class="content-section">
-                <h2>Upcoming Workshops</h2>
-                <p>We offer a variety of workshops throughout the year, covering topics such as digital journalism, media ethics, fact-checking methodologies, data visualization, and storytelling techniques.</p>
-                <p>Our workshops are led by industry experts with years of experience in journalism, media production, and digital content creation. Participants gain practical skills and insights that can be applied immediately in their work or studies.</p>
-            </div>
-
-            <div class="slider-container">
-                <div class="vertical-slider">
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Workshop Vertical 1"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Workshop Vertical 2"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Workshop Vertical 3"></div>
-                    <!-- Duplicate for seamless loop -->
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Workshop Vertical 1"></div>
-                </div>
-            </div>
-
-            <div class="contact-form">
-                <h2>Register for Workshop or Inquire</h2>
-                <form id="workshop-contact">
-                    <div class="form-group">
-                        <label for="workshop-name">Your Name</label>
-                        <input type="text" id="workshop-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="workshop-email">Email Address</label>
-                        <input type="email" id="workshop-email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="workshop-message">Your Message or Workshop Interest</label>
-                        <textarea id="workshop-message" required></textarea>
-                    </div>
-                    <button type="submit" class="form-submit">Send Message</button>
-                </form>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 MM Times - Meenakshi Mukundha Times. All Rights Reserved.</p>
             </div>
         </div>
-
-        <!-- Footer -->
-        <footer>
-            <p>&copy; 2023 MM Times - Meenakshi Mukundha Times. All rights reserved.</p>
-            <p>Email: connect@mmtimes.in</p>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-        </footer>
-    </div>
+    </footer>
 
     <script>
-        // Page Navigation
-        document.addEventListener('DOMContentLoaded', function() {
-            const navButtons = document.querySelectorAll('.nav-btn');
-            const pages = document.querySelectorAll('.page');
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.innerHTML = navMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Image Slider
+        const slider = document.querySelector('.slider');
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+        
+        let currentSlide = 0;
+        const slideWidth = slides[0].clientWidth;
+        
+        function goToSlide(n) {
+            if (n < 0) {
+                currentSlide = slides.length - 1;
+            } else if (n >= slides.length) {
+                currentSlide = 0;
+            } else {
+                currentSlide = n;
+            }
             
-            navButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const targetPage = this.getAttribute('data-page');
-                    
-                    // Update active button
-                    navButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Show target page
-                    pages.forEach(page => {
-                        page.classList.remove('active');
-                        if (page.id === targetPage) {
-                            page.classList.add('active');
-                        }
+            slider.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        }
+        
+        prevBtn.addEventListener('click', () => {
+            goToSlide(currentSlide - 1);
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            goToSlide(currentSlide + 1);
+        });
+        
+        // Auto slide every 5 seconds
+        setInterval(() => {
+            goToSlide(currentSlide + 1);
+        }, 5000);
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
                     });
-                });
-            });
-
-            // Form submissions
-            const forms = document.querySelectorAll('form');
-            forms.forEach(form => {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    alert('Thank you for your message. We will get back to you soon!');
-                    form.reset();
-                });
-            });
-
-            // Account button functionality
-            const accountBtn = document.querySelectorAll('.account-btn');
-            accountBtn.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    if (this.textContent === 'Subscribe') {
-                        document.querySelector('.subscribe-form').scrollIntoView({ 
-                            behavior: 'smooth' 
-                        });
-                    } else {
-                        alert('Account feature coming soon!');
+                    
+                    // Close mobile menu if open
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
                     }
-                });
+                }
             });
         });
     </script>
